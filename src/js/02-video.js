@@ -9,8 +9,6 @@ function onTimePlayer(data) {
     localStorage.setItem(STORAGE_KEY, data.seconds);
 };
 
-player.setCurrentTime(localStorage.getItem(STORAGE_KEY)).catch(function (error) {
-  console.log(error);
-});        
+player.setCurrentTime(localStorage.getItem(STORAGE_KEY));        
 
 player.on('timeupdate', throttle(onTimePlayer, 1000));
