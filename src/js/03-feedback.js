@@ -8,12 +8,18 @@ initForm();
 form.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
+  const email = e.target.elements.email.value;
+  const message = e.target.elements.message.value;
+    if (email === "" || message === "") {
+      alert("Все поля должны быть заполнены!");
+  } else {
+    const formData = { email, message };
+    console.log(formData);
     e.currentTarget.reset();
     localStorage.removeItem(LOCALSTORAGE_KEY);
-    const formData = new FormData(form);
-    formData.forEach((value, name) => console.log(value, name));
- }
+  }
+  }
 
 function onFormInput(e) {
     let persistedFilters = localStorage.getItem(LOCALSTORAGE_KEY);
